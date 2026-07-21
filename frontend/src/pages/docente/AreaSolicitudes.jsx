@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SharedSidebar from '../../components/SharedSidebar';
+import ProgressTracker from '../../components/ProgressTracker';
 import { useDocenteWorkflow } from '../../context/DocenteWorkflowContext';
 import { Download, Upload, FileText, Check, X, Eye } from 'lucide-react';
 
@@ -82,12 +83,6 @@ const AreaSolicitudes = () => {
                 <div className="text-center py-12">
                   <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                   <p className="text-gray-500">No hay solicitudes pendientes</p>
-                  <button
-                    onClick={() => navigate('/docente/solicitud')}
-                    className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-                  >
-                    Crear Nueva Solicitud
-                  </button>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -129,6 +124,12 @@ const AreaSolicitudes = () => {
                 <X className="w-5 h-5" />
                 <span>Volver a solicitudes</span>
               </button>
+
+              {/* Progress Steps */}
+              <ProgressTracker 
+                currentStep={1} 
+                steps={['Solicitud', 'Carta Responsiva', 'Reporte', 'Histórico']} 
+              />
 
               {/* Request Details */}
               <div className="bg-white rounded-xl shadow-md p-6">
